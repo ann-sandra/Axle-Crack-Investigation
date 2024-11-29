@@ -103,7 +103,7 @@ The dataset files followed the structure:
    - **Decision Tree Classifier**:
      - Achieved **99.99% accuracy** using the feature: 
        - `fft_freq_vibrational_acceleration_dx_x_average` (average FFT frequency along the x-axis of the non-defective side across one rotation).
-     - <img src="images/dt.png" alt="Decision Tree" width="500" style="background-color: white;"/> 
+     - <img src="images/dt.png" alt="Decision Tree" width="500" style="background-color: grey;"/> 
      - Threshold: If `fft_freq_vibrational_acceleration_dx_x_average < 0.185`, it indicated **wear**; otherwise, it indicated **crack**.
 
 4. **Insights**:
