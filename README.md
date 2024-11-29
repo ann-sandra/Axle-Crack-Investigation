@@ -3,6 +3,7 @@
 ## Business Problem Statement
 
 The task was to identify differences between healthy and defective axle in a wheelset based on velocity and defect severity. Additionally, the goal was to determine if we could distinguish between the presence of a crack and the wear phenomenon of the wheel arising from increasing kilometers traveled. 
+<img src="image/axle.png" alt="Axle" width="500"/> 
 
 ### Analytics Problem Statement
 
@@ -59,13 +60,17 @@ The dataset files followed the structure:
 
 1. **Vibrational Acceleration Analysis**:
    - Non-defective side: Highest acceleration along the **z-axis**.
+   - <img src="image/acceleration.png" alt="Acceleration" width="500"/> 
    - Defective side: Negative acceleration observed along the **y-axis**.
+   - <img src="image/defacceleration.png" alt="Defective Acceleration" width="500"/> 
    
 2. **FFT of Vibrational Acceleration Frequencies**:
    - Fast Fourier Transform (FFT) was used to analyze vibrational acceleration.
+   - <img src="image/FFT.png" alt="FFT" width="500"/> 
    - Peaks in the amplitude spectrum provided insights into dominant vibrational patterns.
 
 3. **Correlation Analysis**:
+   - <img src="image/correlation.png" alt="Correlation" width="500"/> 
    - No significant correlations were observed in the heatmap.
 
 ---
@@ -77,7 +82,7 @@ The dataset files followed the structure:
      - **Minimum**, **maximum**, **average**, and **standard deviation** of vibrational acceleration across x, y, z axes.
      - **FFT frequency** metrics for each axis.
 
-2. Result: Each block was reduced to a single row summarizing these statistics, ensuring efficient computation.
+2. Result: Each block of size 665 was reduced to a single row summarizing these statistics, ensuring efficient computation.
 
 ---
 
@@ -96,6 +101,7 @@ The dataset files followed the structure:
    - **Decision Tree Classifier**:
      - Achieved **99.99% accuracy** using the feature: 
        - `fft_freq_vibrational_acceleration_dx_x_average` (average FFT frequency along the x-axis of the non-defective side across one rotation).
+     - <img src="image/dt.png" alt="Decision Tree" width="500"/> 
      - Threshold: If `fft_freq_vibrational_acceleration_dx_x_average < 0.185`, it indicated **wear**; otherwise, it indicated **crack**.
 
 4. **Insights**:
@@ -106,6 +112,7 @@ The dataset files followed the structure:
 1. **Wear Dataset**:
    - Decision Tree with pre-pruning `min_samples_split=100` and `min_samples_leaf=100`.
    - Achieved **96.77% accuracy**.
+   - <img src="image/dtdefect.png" alt="Wear DT" width="500"/> 
    - Important Features:
      - The following features were identified as the most significant for classifying the severity of wear in the dataset:
 
@@ -116,11 +123,13 @@ The dataset files followed the structure:
       | `y_sx_std_dev` | **0.1629**       |
       | `Velocity`     | **0.1358**       |
       | `x_sx_std_dev` | **0.1153**       |
+     - <img src="image/featuredefect.png" alt="Features of wear DT" width="500"/> 
 
 
 2. **Crack Dataset**:
    - Decision Tree with pre-pruning `min_samples_split=100` and `min_samples_leaf=100`.
    - Achieved **70.07% accuracy**.
+   - <img src="image/dtcrack.png" alt="Crack DT" width="500"/> 
    - The following features were identified as the most significant for classifying the severity of cracks in the dataset:
 
       | Feature        | Importance Score |
@@ -130,6 +139,7 @@ The dataset files followed the structure:
       | `z_sx_std_dev` | **0.0946**       |
       | `x_dx_std_dev` | **0.0233**       |
       | `z_dx_std_dev` | **0.0009**       |
+   - <img src="image/featurecrack.png" alt="Features of crack DT" width="500"/> 
 
    - Challenges:
      - Overlaps in characteristics between crack severity classes (e.g., **Crack70**, **Crack81**, **Crack91**) reduced accuracy.
