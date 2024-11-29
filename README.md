@@ -4,6 +4,7 @@
 
 The task was to identify differences between healthy and defective axle in a wheelset based on velocity and defect severity. Additionally, the goal was to determine if we could distinguish between the presence of a crack and the wear phenomenon of the wheel arising from increasing kilometers traveled. 
 
+### Wheelset Structure
 <img src="images/axle.png" alt="Axle" width="250"/> 
 
 ### Analytics Problem Statement
