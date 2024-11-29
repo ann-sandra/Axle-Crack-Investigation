@@ -141,7 +141,7 @@ The dataset files followed the structure:
       | `z_sx_std_dev` | **0.0946**       |
       | `x_dx_std_dev` | **0.0233**       |
       | `z_dx_std_dev` | **0.0009**       |
-   - <img src="images/featurecrack.png" alt="Features of crack DT" width="500"/> 
+   - <img src="images/featurecrack.png" alt="Features of crack DT" width="500" style="background-color: white;"/> 
 
    - Challenges:
      - Overlaps in characteristics between crack severity classes (e.g., **Crack70**, **Crack81**, **Crack91**) reduced accuracy.
