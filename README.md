@@ -2,7 +2,7 @@
 
 ## Business Problem Statement
 
-The task was to identify differences between healthy and defective data based on velocity and defect severity. Additionally, the goal was to determine if we could distinguish between the presence of a crack and the wear phenomenon of the wheel arising from increasing kilometers traveled. 
+The task was to identify differences between healthy and defective axle in a wheelset based on velocity and defect severity. Additionally, the goal was to determine if we could distinguish between the presence of a crack and the wear phenomenon of the wheel arising from increasing kilometers traveled. 
 
 ### Analytics Problem Statement
 
@@ -16,7 +16,7 @@ The task was to identify differences between healthy and defective data based on
 
 ## Data Description
 
-The dataset comprised axle-box accelerations recorded during experimental tests on a wheelset installed on the LucchiniRS test bench. The wheelset was tested under conditions replicating real-world train operation, including:
+The dataset comprised axle-box accelerations recorded during experimental tests on a wheelset installed on the test bench. The wheelset was tested under conditions replicating real-world train operation, including:
 - Speeds of **100 km/h**, **200 km/h**, and **300 km/h**.
 - Applied loads to simulate running conditions.
 - Artificially reproduced axle cracks of increasing severity (**Crack70**, **Crack81**, **Crack91**).
@@ -30,8 +30,8 @@ The dataset comprised axle-box accelerations recorded during experimental tests 
 - **Speed**: Wheelset velocity (100, 200, or 300 km/h).
 - **Sampling Frequency**: Fixed at 6400 samples/second.
 - **Vibrational Acceleration**:
-  - **x_dx**, **y_dx**, **z_dx**: Acceleration along the x, y, and z axes on the non-defective side.
-  - **x_sx**, **y_sx**, **z_sx**: Acceleration along the x, y, and z axes on the defective side.
+  - **x_dx**, **y_dx**, **z_dx**: Vibrational acceleration along the x, y, and z axes on the non-defective side.
+  - **x_sx**, **y_sx**, **z_sx**: Vibrational acceleration along the x, y, and z axes on the defective side.
 
 ### Data Structure
 
@@ -104,25 +104,37 @@ The dataset files followed the structure:
 ### Defect Severity Classification
 
 1. **Wear Dataset**:
-   - Decision Tree with `min_samples_split=100` and `min_samples_leaf=100`.
+   - Decision Tree with pre-pruning `min_samples_split=100` and `min_samples_leaf=100`.
    - Achieved **96.77% accuracy**.
    - Important Features:
-     - 
+     - The following features were identified as the most significant for classifying the severity of wear in the dataset:
+
+| Feature        | Importance Score |
+|----------------|------------------|
+| `z_dx_std_dev` | **0.3492**       |
+| `y_dx_std_dev` | **0.1646**       |
+| `y_sx_std_dev` | **0.1629**       |
+| `Velocity`     | **0.1358**       |
+| `x_sx_std_dev` | **0.1153**       |
+
 
 2. **Crack Dataset**:
-   - Decision Tree with `min_samples_split=100` and `min_samples_leaf=100`.
+   - Decision Tree with pre-pruning `min_samples_split=100` and `min_samples_leaf=100`.
    - Achieved **70.07% accuracy**.
+   - The following features were identified as the most significant for classifying the severity of cracks in the dataset:
+
+| Feature        | Importance Score |
+|----------------|------------------|
+| `x_sx_std_dev` | **0.5429**       |
+| `y_sx_std_dev` | **0.3383**       |
+| `z_sx_std_dev` | **0.0946**       |
+| `x_dx_std_dev` | **0.0233**       |
+| `z_dx_std_dev` | **0.0009**       |
+
    - Challenges:
      - Overlaps in characteristics between crack severity classes (e.g., **Crack70**, **Crack81**, **Crack91**) reduced accuracy.
      - Variability due to different states of **compression** and **traction**.
-
----
-
-## Future Scope
-
-1. Extend the analysis to incorporate the **crack breathing mechanism**, which models the states of compression and traction. 
-2. This could improve classification accuracy between different crack severities by accounting for additional physical phenomena.
-
+       
 ---
 
 ## Results
@@ -132,3 +144,11 @@ The dataset files followed the structure:
   - Wear: 96.77% accuracy.
   - Crack: 70.07% accuracy.
 - Key Insight: Axles with cracks exhibit higher vibrational acceleration and FFT frequency compared to worn axles.
+
+---
+
+## Future Scope
+
+1. Extend the analysis to incorporate the **crack breathing mechanism**, which models the states of compression and traction. 
+2. This could improve classification accuracy between different crack severities by accounting for additional physical phenomena.
+
