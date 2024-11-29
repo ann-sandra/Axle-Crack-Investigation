@@ -109,13 +109,13 @@ The dataset files followed the structure:
    - Important Features:
      - The following features were identified as the most significant for classifying the severity of wear in the dataset:
 
-| Feature        | Importance Score |
-|----------------|------------------|
-| `z_dx_std_dev` | **0.3492**       |
-| `y_dx_std_dev` | **0.1646**       |
-| `y_sx_std_dev` | **0.1629**       |
-| `Velocity`     | **0.1358**       |
-| `x_sx_std_dev` | **0.1153**       |
+      | Feature        | Importance Score |
+      |----------------|------------------|
+      | `z_dx_std_dev` | **0.3492**       |
+      | `y_dx_std_dev` | **0.1646**       |
+      | `y_sx_std_dev` | **0.1629**       |
+      | `Velocity`     | **0.1358**       |
+      | `x_sx_std_dev` | **0.1153**       |
 
 
 2. **Crack Dataset**:
@@ -123,13 +123,13 @@ The dataset files followed the structure:
    - Achieved **70.07% accuracy**.
    - The following features were identified as the most significant for classifying the severity of cracks in the dataset:
 
-| Feature        | Importance Score |
-|----------------|------------------|
-| `x_sx_std_dev` | **0.5429**       |
-| `y_sx_std_dev` | **0.3383**       |
-| `z_sx_std_dev` | **0.0946**       |
-| `x_dx_std_dev` | **0.0233**       |
-| `z_dx_std_dev` | **0.0009**       |
+      | Feature        | Importance Score |
+      |----------------|------------------|
+      | `x_sx_std_dev` | **0.5429**       |
+      | `y_sx_std_dev` | **0.3383**       |
+      | `z_sx_std_dev` | **0.0946**       |
+      | `x_dx_std_dev` | **0.0233**       |
+      | `z_dx_std_dev` | **0.0009**       |
 
    - Challenges:
      - Overlaps in characteristics between crack severity classes (e.g., **Crack70**, **Crack81**, **Crack91**) reduced accuracy.
