@@ -159,6 +159,15 @@ The dataset files followed the structure:
 
 ---
 
+## How to Run
+
+### **Pre-requisites**:
+1. Install the required libraries:
+   ```bash
+   pip install pandas numpy matplotlib
+
+---
+
 ## Future Scope
 
 1. Extend the analysis to incorporate the **crack breathing mechanism**, which models the states of compression and traction. 
